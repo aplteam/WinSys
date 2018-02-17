@@ -1,0 +1,8 @@
+ R←Test_005(stopFlag batchFlag);v;i;⎕TRAP
+⍝ Test the ##.WinSys.GetSystemMetrics method
+ R←∆Failed
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ v←##.WinSys.(GetSystemMetrics¨⍎¨List_SM)
+
+ R←∆OK

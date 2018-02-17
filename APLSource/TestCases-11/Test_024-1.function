@@ -1,0 +1,31 @@
+ R←Test_024(stopFlag batchFlag);⎕TRAP;ref;∆;size;posn
+⍝ Exercise ##.WinSys.SetWindowParms
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ ∆←''
+ ∆,←⊂'Caption' 'WinSys-TestCases-024'
+ ∆,←⊂'Coord' 'ScaledPixel'
+ ∆,←⊂'Posn'(60 20)
+ ∆,←⊂'Size'(200 300)
+ ∆,←⊂'SysMenu' 0
+ ∆,←⊂'MaxButton' 0
+ ∆,←⊂'MinButton' 0
+ ∆,←⊂'EdgeStyle' 'Dialog'
+ ∆,←⊂'Border' 2
+ ∆,←⊂'Moveable' 0
+ ref←⎕NEW'Form'∆
+
+ size←400 600
+ {}##.WinSys.SetWindowParms ref.Handle size
+ →GoToTidyUp~∧/(⌊(##.WinSys.GetDPI÷100)×⌽ref.Size)∊¨(size-20)+¨⊂⍳40
+ size←500 800
+ posn←100 200
+ {}posn ##.WinSys.SetWindowParms ref.Handle size
+ →GoToTidyUp~∧/(⌊(##.WinSys.GetDPI÷100)×⌽ref.Size)∊¨(size-20)+¨⊂⍳40
+ →GoToTidyUp~∧/(⌊(##.WinSys.GetDPI÷100)×⌽ref.Posn)∊¨(posn-20)+¨⊂⍳40
+
+ R←∆OK
+
+∆TidyUp:
+ :Trap 0 ⋄ {}ref.Close ⋄ :EndTrap

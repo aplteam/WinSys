@@ -1,0 +1,17 @@
+ R←Test_018(stopFlag batchFlag);⎕TRAP;cmd;fn;pid;home
+⍝ Exercise ##.WinSys.KillProcess ⍝Deprecated⍝
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ home←GetFileRoot
+ 1 ⎕NDELETE fn←home,'Tests\TestKillProcessId'
+ cmd←{⍵↑⍨1++/2>+\⍵='"'}#.GetCommandLine
+ cmd,←' "',home,'Tests\TestKillProcess"'
+ ⎕SH cmd''
+ ⎕DL 2
+ pid←⍎#.APLTreeUtils.ReadUtf8File fn
+
+ →PassesIf ##.WinSys.KillProcess pid
+ →PassesIf 0=##.WinSys.KillProcess 0
+
+ R←∆OK

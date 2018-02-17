@@ -1,0 +1,7 @@
+ r←∆Ask msg;flag;answer
+ flag←0
+ :Repeat
+     answer←¯1↑⍞,0/⍞←msg,' (y/n) '
+     flag←answer∊'yYnN'
+ :Until flag
+ r←answer∊'Yy'

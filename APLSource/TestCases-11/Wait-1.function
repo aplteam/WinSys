@@ -1,0 +1,1 @@
+ Wait←{_←⎕DL 0.2 ⋄ ⎕NEXISTS ⍵: ⋄ ∇ ⍵}

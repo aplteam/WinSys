@@ -1,0 +1,10 @@
+ R←Test_014(stopFlag batchFlag);⎕TRAP;r;path;exeName;parms;dllName
+⍝ Exercise ##.WinSys.GetModuleFileName
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ dllName←↑↑#.FilesAndDirs.Dir(⎕IO⊃#.APLTreeUtils.SplitPath ⎕IO ⎕IO⊃#.GetCommandLineArgs'Dyalog'),'\dyalog*.dll'
+ r←##.WinSys.GetModuleFileName dllName
+ →PassesIf 0<⍴r
+
+ R←∆OK

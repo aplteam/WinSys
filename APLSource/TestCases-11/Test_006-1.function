@@ -1,0 +1,13 @@
+ R←Test_006(stopFlag batchFlag);v;i;⎕TRAP
+⍝ Test the ##.WinSys.GetVersion method
+ R←∆Failed
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ v←##.WinSys.GetVersion
+ →FailsIf 4≠⍴v              ⍝ Must have three elements
+ →FailsIf~(0⊃v)∊1+⍳99       ⍝ The major number - test is fine until version 99 ;)
+ →FailsIf~(1⊃v)∊⍳100        ⍝ The minor number - something between 0 and 99
+ →FailsIf~(2⊃v)∊⍳99999      ⍝ The build ID - 0 to 99999
+ →FailsIf' '≠1↑0⍴3⊃v        ⍝ Build ID info (or empty) must be text
+
+ R←∆OK
