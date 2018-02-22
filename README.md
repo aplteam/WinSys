@@ -1,8 +1,8 @@
-# WinSys
+# Interface between the Windows OS and Dyalog APL
 
-`WinSys`  is a member of the APLTree library: a collection of classes etc. that aim to support the Dyalog APL programmer. 
 
-The members of the APLTree library solve many every-day problems any programmer might run into. All those members are tagged as "dyalog" and "apltree".
+`WinSys` is a member of the APLTree library. The library is a collection of classes etc. that aim to support the Dyalog APL programmer. Search GitHub for "apltree" and you will find solutions to many every-day problems Dyalog APL programmers might have to solve.
+
 
 ## Overview
 
