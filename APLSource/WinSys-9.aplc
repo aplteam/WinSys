@@ -22,17 +22,9 @@
       :Access Public shared
       ⍝ * 2.7.0:
       ⍝   * Converted from the APL wiki to GitHub.
-      ⍝ * 2.6.0:
-      ⍝   Method `History` introduced.
-      ⍝   `WinSys` is no managed by acre 3.
-      ⍝ * 2.5.0:
-      ⍝   * This version requires Dyalog 15.0 Unicode or better.
-      ⍝   * Old code removed.
-      ⍝   * New methods `GetAllDrives` and `GetDriveAndType` added.
-      ⍝   * `ShellExecute` is more flexible now regarding the right argument.
-      ⍝   * `FindWindow` added.
-      ⍝   * Bug fix: `GetModuleFileName` worked on 32-bit systems only.
-      ⍝
+      ⍝\\
+      ⍝ For information regarding older versions see <https://github.com/aplteam/Meddy/releases>
+
       ⍝ Note that a couple of functions are deprecated now. Search for `⍝Deprecated⍝`. \\
       ⍝ These functions are not mantained any more and will be removed from `WinSys`
       ⍝ in a future release. See the `OS` class which offers platform-independent
