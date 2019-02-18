@@ -15,15 +15,15 @@
 
     ∇ r←Version
       :Access Public shared
-      r←({⍵↑⍨-'.'⍳⍨⌽⍵}⍕⎕THIS)'2.7.0.2' '2018-02-15'
+      r←({⍵↑⍨-'.'⍳⍨⌽⍵}⍕⎕THIS)'2.7.1.3' '2019-02-18'
     ∇
 
     ∇ History
       :Access Public shared
-      ⍝ * 2.7.0:
-      ⍝   * Converted from the APL wiki to GitHub.
+      ⍝ * 2.7.1:
+      ⍝   * :Include APLTreeUtils fixed
       ⍝\\
-      ⍝ For information regarding older versions see <https://github.com/aplteam/Meddy/releases>
+      ⍝ For information regarding older versions see <https://github.com/aplteam/WinSys/releases>
 
       ⍝ Note that a couple of functions are deprecated now. Search for `⍝Deprecated⍝`. \\
       ⍝ These functions are not mantained any more and will be removed from `WinSys`
