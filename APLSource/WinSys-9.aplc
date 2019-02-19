@@ -15,7 +15,7 @@
 
     ∇ r←Version
       :Access Public shared
-      r←({⍵↑⍨-'.'⍳⍨⌽⍵}⍕⎕THIS)'2.7.2.3' '2019-02-19'
+      r←({⍵↑⍨-'.'⍳⍨⌽⍵}⍕⎕THIS)'2.7.2.4' '2019-02-19'
     ∇
 
     ∇ History
