@@ -8,20 +8,20 @@
 ⍝ Homepage: <http://aplwiki.com/WinSys>\\
 ⍝ Kai Jaeger ⋄ APL Team Ltd.
 
-    :Include ##.APLTreeUtils
+    :Include APLTreeUtils
 
     ⎕IO←0
     ⎕ML←3
 
     ∇ r←Version
       :Access Public shared
-      r←({⍵↑⍨-'.'⍳⍨⌽⍵}⍕⎕THIS)'2.7.1.3' '2019-02-18'
+      r←({⍵↑⍨-'.'⍳⍨⌽⍵}⍕⎕THIS)'2.7.2.3' '2019-02-19'
     ∇
 
     ∇ History
       :Access Public shared
-      ⍝ * 2.7.1:
-      ⍝   * :Include APLTreeUtils fixed
+      ⍝ * 2.7.2:
+      ⍝   * Fix fixed: `:Include APLTreeUtils`
       ⍝\\
       ⍝ For information regarding older versions see <https://github.com/aplteam/WinSys/releases>
 
