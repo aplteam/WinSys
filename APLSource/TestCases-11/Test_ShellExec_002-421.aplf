@@ -1,5 +1,5 @@
  R←Test_ShellExec_002(stopFlag batchFlag);⎕TRAP;parms
-⍝ Exercise ##.WinSys.ShellExecute with a parameter space and an invalid verb
+⍝ Exercise `##.WinSys.ShellExecute` with a parameter space and an invalid verb
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

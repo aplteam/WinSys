@@ -1,5 +1,5 @@
  R←Test_018(stopFlag batchFlag);⎕TRAP;cmd;fn;pid;home
-⍝ Exercise ##.WinSys.KillProcess ⍝Deprecated⍝
+⍝ Exercise `##.WinSys.KillProcess` Deprecated!
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

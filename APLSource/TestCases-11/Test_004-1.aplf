@@ -1,5 +1,5 @@
  R←Test_004(stopFlag batchFlag);v;i;windir;set;r;⎕TRAP
-⍝ Test the ##.WinSys.GetWindowsDirectory
+⍝ Test `##.WinSys.GetWindowsDirectory`
  R←∆Failed
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 

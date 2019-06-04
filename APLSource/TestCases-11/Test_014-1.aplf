@@ -1,5 +1,5 @@
  R←Test_014(stopFlag batchFlag);⎕TRAP;r;path;exeName;parms;dllName
-⍝ Exercise ##.WinSys.GetModuleFileName
+⍝ Exercise `##.WinSys.GetModuleFileName`
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

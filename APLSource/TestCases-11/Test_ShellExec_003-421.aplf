@@ -1,5 +1,5 @@
  R←Test_ShellExec_003(stopFlag batchFlag);⎕TRAP
-⍝ Exercise ##.WinSys.ShellExecute with an invalid right argument
+⍝ Exercise `##.WinSys.ShellExecute` with an invalid right argument
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

@@ -1,10 +1,9 @@
- R←Test_003(stopFlag batchFlag);v;i;rk;⎕TRAP
-⍝ Test the ##.WinSys.GetComputerName method
+ R←Test_003(stopFlag batchFlag);i;⎕TRAP;value
+⍝ Test the `##.WinSys.GetComputerName` method
  R←∆Failed
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- v←##.WinSys.GetComputerName
- rk←'HKCU\Software\Microsoft\Windows Media\WMSDK\General\ComputerName'
- →FailsIf v≢#.WinReg.GetString rk
+ value←##.WinSys.GetComputerName
+ →FailsIf value≢2 ⎕NQ #'GetEnvironment' 'Computername'
 
  R←∆OK

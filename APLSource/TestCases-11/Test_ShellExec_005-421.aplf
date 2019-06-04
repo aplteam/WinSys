@@ -1,5 +1,5 @@
  R←Test_ShellExec_005(stopFlag batchFlag);⎕TRAP;tfn;buffer
-⍝ Exercise ##.WinSys.ShellExecute with a more complex string as right argument.
+⍝ Exercise `##.WinSys.ShellExecute` with a more complex string as right argument.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

@@ -1,5 +1,5 @@
  R←Test_008(stopFlag batchFlag);h;ff;⎕TRAP
-⍝ Test the ##.WinSys.GetHandleFromCaption method
+⍝ Exercise `##.WinSys.GetHandleFromCaption`
  R←∆Failed
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 

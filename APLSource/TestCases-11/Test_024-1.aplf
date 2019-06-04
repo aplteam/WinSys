@@ -1,5 +1,5 @@
  R←Test_024(stopFlag batchFlag);⎕TRAP;ref;∆;size;posn
-⍝ Exercise ##.WinSys.SetWindowParms
+⍝ Exercise `##.WinSys.SetWindowParms`
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

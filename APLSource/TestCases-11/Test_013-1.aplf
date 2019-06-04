@@ -1,5 +1,5 @@
  R←Test_013(stopFlag batchFlag);⎕TRAP;r
-⍝ Exercise ##.WinSys.GetFormCaptionFontInfo
+⍝ Exercise `##.WinSys.GetFormCaptionFontInfo`
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

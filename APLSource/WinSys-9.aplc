@@ -15,16 +15,16 @@
 
     ∇ r←Version
       :Access Public shared
-      r←({⍵↑⍨-'.'⍳⍨⌽⍵}⍕⎕THIS)'2.7.2.4' '2019-02-19'
+      r←({⍵↑⍨-'.'⍳⍨⌽⍵}⍕⎕THIS)'2.8.0.5' '2019-06-04'
     ∇
 
     ∇ History
       :Access Public shared
-      ⍝ * 2.7.2:
-      ⍝   * Fix fixed: `:Include APLTreeUtils`
+      ⍝ * 2.8.0:
+      ⍝   * New method `GetDefaultBrowser` added.
       ⍝\\
       ⍝ For information regarding older versions see <https://github.com/aplteam/WinSys/releases>
-
+     
       ⍝ Note that a couple of functions are deprecated now. Search for `⍝Deprecated⍝`. \\
       ⍝ These functions are not mantained any more and will be removed from `WinSys`
       ⍝ in a future release. See the `OS` class which offers platform-independent
@@ -250,6 +250,17 @@
       multiByte←1+80=⎕DR' '           ⍝ Unicode version? (used to double the buffer size)
       (rc buffer size)←∆GetComputerName multiByte×2⍴32
       R←(0=↑rc)⊃buffer''
+    ∇
+
+    ∇ r←GetDefaultBrowser;regKey1;progID;regKey2;wsh
+    ⍝ Returns the full path to the current default browser EXE from the Windows Registry, possibly with
+    ⍝ command line parameters.
+      :Access Public Shared
+      'wsh'⎕WC'OLEClient' 'WScript.Shell'
+      regKey1←'HKCU\Software\Microsoft\Windows\Shell\Associations\UrlAssociations\https\UserChoice\ProgID'
+      progID←wsh.RegRead⊂regKey1
+      regKey2←'HKEY_LOCAL_MACHINE\SOFTWARE\Classes\',progID,'\shell\open\command\'
+      r←wsh.RegRead⊂regKey2
     ∇
 
     ∇ R←GetSystemMetrics Value;∆GetSystemMetrics
@@ -485,7 +496,7 @@
           'Invalid: "posn"'⎕SIGNAL 11/⍨2≠⍴,posn
           rc←0=∆Setwinpos hwnd 0,posn,size,580
       :EndIf
-
+     
     ∇
 
     ∇ R←GetLastError;∆GetLastError;⎕ML;⎕IO

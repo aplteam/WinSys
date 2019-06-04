@@ -1,5 +1,5 @@
  R←Test_001(stopFlag batchFlag);rf;⎕TRAP
-⍝ Test the ##.WinSys.CONSTANT method
+⍝ Test the `##.WinSys.CONSTANT` method
  R←∆Failed
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 

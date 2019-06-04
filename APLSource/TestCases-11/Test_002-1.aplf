@@ -1,5 +1,5 @@
  R←Test_002(stopFlag batchFlag);v;i;⎕TRAP
-⍝ Test the ##.WinSys.ExpandEnv method
+⍝ Test the `##.WinSys.ExpandEnv` method
  R←∆Failed
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 

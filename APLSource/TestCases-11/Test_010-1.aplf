@@ -1,5 +1,5 @@
  R←Test_010(stopFlag batchFlag);buf;⎕TRAP
-⍝ Test the ##.WinSys.GetDPI method
+⍝ Exercise `##.WinSys.GetDPI`
  R←∆Failed
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 

@@ -1,5 +1,5 @@
  R←Test_ShellExec_020(stopFlag batchFlag);⎕TRAP;parms;pid;filename;Wait
-⍝ Exercise ##.WinSys.ShellExecute with a parameter space.
+⍝ Exercise `##.WinSys.ShellExecute` with a parameter space.
 ⍝ NOTE: This test case can only succeed when the account under which it is executed has admin rights.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed

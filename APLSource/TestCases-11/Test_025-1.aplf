@@ -1,5 +1,5 @@
  R←Test_025(stopFlag batchFlag);h;ff;⎕TRAP
-⍝ Test the ##.WinSys.FindWindow method
+⍝ Test the `##.WinSys.FindWindow`
  R←∆Failed
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 

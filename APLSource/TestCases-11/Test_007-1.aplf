@@ -1,5 +1,5 @@
  R←Test_007(stopFlag batchFlag);i;ms;⎕TRAP
-⍝ Test the ##.WinSys.GetMsgFrom method
+⍝ Exercise `##.WinSys.GetMsgFrom`
  R←∆Failed
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 

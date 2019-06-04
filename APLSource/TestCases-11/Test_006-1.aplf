@@ -1,5 +1,5 @@
  R←Test_006(stopFlag batchFlag);v;i;⎕TRAP
-⍝ Test the ##.WinSys.GetVersion method
+⍝ Exercise `##.WinSys.GetVersion`
  R←∆Failed
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 

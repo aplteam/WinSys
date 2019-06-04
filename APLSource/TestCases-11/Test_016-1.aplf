@@ -1,5 +1,5 @@
  R←Test_016(stopFlag batchFlag);⎕TRAP;r;dllName;filename;path;rc
-⍝ Exercise ##.WinSys.FindExecutable
+⍝ Exercise `##.WinSys.FindExecutable`
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

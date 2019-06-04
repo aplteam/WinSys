@@ -1,0 +1,8 @@
+ R←Test_028(stopFlag batchFlag);⎕TRAP;exe
+ ⍝ Exercise `##.WinSys.GetDefaultBrowser`
+ R←∆Failed
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ →PassesIf 0<≢exe←##.WinSys.GetDefaultBrowser
+
+ R←∆OK

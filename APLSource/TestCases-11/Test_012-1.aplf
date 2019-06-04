@@ -1,5 +1,5 @@
  R←Test_012(stopFlag batchFlag);⎕TRAP;r
-⍝ Exercise ##.WinSys.GetSystemParametersInfo
+⍝ Exercise `##.WinSys.GetSystemParametersInfo`
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

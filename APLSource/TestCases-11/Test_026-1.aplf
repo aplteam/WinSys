@@ -1,5 +1,5 @@
  R←Test_026(stopFlag batchFlag);list;⎕TRAP
- ⍝ Exercise "GetAllDrives"
+ ⍝ Exercise `##.WinSys.GetAllDrives`
  R←∆Failed
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 

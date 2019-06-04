@@ -1,5 +1,5 @@
  R←Test_027(stopFlag batchFlag);list;types;⎕TRAP
- ⍝ Exercise "GetDriveAndType"
+ ⍝ Exercise `##.WinSys.GetDriveAndType`
  R←∆Failed
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 

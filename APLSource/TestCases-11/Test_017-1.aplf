@@ -1,5 +1,5 @@
  R←Test_017(stopFlag batchFlag);⎕TRAP
-⍝ Exercise ##.WinSys.GetLastError
+⍝ Exercise `##.WinSys.GetLastError`
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 
