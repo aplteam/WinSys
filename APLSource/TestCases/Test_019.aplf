@@ -1,0 +1,10 @@
+ R←Test_019(stopFlag batchFlag);⎕TRAP;parms
+⍝ Exercise `##.WinSys.CreateParms_ShellExecute`
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←T._Failed
+
+ parms←##.WinSys.CreateParms_ShellExecute
+ →T.FailsIf 9≠⎕NC'parms'
+ →T.FailsIf 0∊⍴parms.⎕NL⍳16
+
+ R←T._OK

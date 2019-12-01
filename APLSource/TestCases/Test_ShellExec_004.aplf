@@ -1,0 +1,16 @@
+ R←Test_ShellExec_004(stopFlag batchFlag);⎕TRAP;tfn;wspath;pid;filename;exe
+⍝ Exercise `##.WinSys.ShellExecute` with a string as right argument.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←T._Failed
+
+ wspath←'"',##.FilesAndDirs.PWD,'\Tests\TestCase_ShellExec_004.dws"'
+ exe←(2 ⎕NQ'#' 'GetEnvironment' 'Dyalog'),'/dyalog.exe'
+ pid←⍕##.WinSys.GetProcessID
+ →T.PassesIf 0=##.WinSys.ShellExecute'"',exe,'" ',wspath,' pid=',pid     ⍝ ,' -lx'  ⍝ For chaning that WS
+ ⎕DL 2
+ filename←##.FilesAndDirs.PWD,'\Tests\TestCase_ShellExec_004-',pid
+ →T.PassesIf ⎕NEXISTS filename
+ →T.PassesIf'Here we are!'≡##.APLTreeUtils.ReadUtf8File filename
+ ⎕NDELETE filename
+
+ R←T._OK

@@ -1,0 +1,9 @@
+ R←Test_010(stopFlag batchFlag);buf;⎕TRAP
+⍝ Exercise `##.WinSys.GetDPI`
+ R←T._Failed
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ buf←##.WinSys.Version
+ →T.FailsIf 3≠⍴buf
+
+ R←T._OK

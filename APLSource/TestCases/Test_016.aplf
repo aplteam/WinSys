@@ -1,0 +1,16 @@
+ R←Test_016(stopFlag batchFlag);⎕TRAP;r;dllName;filename;path;rc
+⍝ Exercise `##.WinSys.FindExecutable`
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←T._Failed
+
+ :If 0=batchFlag
+     filename←'Tests\empty.dws'
+     :If 0=⎕NEXISTS filename
+         . ⍝ Huuh?! Something is wrong here!
+     :EndIf
+     (rc path)←##.WinSys.FindExecutable ##.FilesAndDirs.PWD,'\',filename
+     →T.FailsIf 0≠rc
+     →T.FailsIf'dyalog.exe'≢##.APLTreeUtils.Lowercase 1⊃##.APLTreeUtils.SplitPath path
+ :EndIf
+
+ R←T._OK

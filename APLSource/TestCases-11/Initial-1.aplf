@@ -1,9 +1,0 @@
- Initial;home
- ⎕IO←0 ⋄ ⎕ML←3
- #.FilesAndDirs.PolishCurrentDir
- #.Tester.EstablishHelpersIn ⍬
- #.INI←'flat'(⎕NEW #.IniFiles(,⊂GetFileRoot,'Tests\INIs\TestCases_',##.WinSys.GetComputerName,'.ini')).Convert ⎕NS''
- home←GetTestCasesHome
- {}#.FilesAndDirs.RmDir home                    ⍝ Just in case
- {}'Create!'#.FilesAndDirs.CheckPath home       ⍝ Create the directory; is populated by some test cases
-⍝Done

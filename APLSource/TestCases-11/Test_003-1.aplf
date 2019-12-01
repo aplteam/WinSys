@@ -1,9 +1,0 @@
- R←Test_003(stopFlag batchFlag);i;⎕TRAP;value
-⍝ Test the `##.WinSys.GetComputerName` method
- R←∆Failed
- ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
-
- value←##.WinSys.GetComputerName
- →FailsIf value≢2 ⎕NQ #'GetEnvironment' 'Computername'
-
- R←∆OK

@@ -1,0 +1,44 @@
+ R←Test_ShellExec_020(stopFlag batchFlag);⎕TRAP;parms;pid;filename;Wait
+⍝ Exercise `##.WinSys.ShellExecute` with a parameter space.
+⍝ NOTE: This test case can only succeed when the account under which it is executed has admin rights.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←T._Failed
+ Wait←{_←⎕DL 0.1 ⋄ ⎕NEXISTS ⍵:{_←⎕DL ⍵ ⋄ 1:}0.2 ⋄ ∇ ⍵}
+
+ pid←##.WinSys.GetProcessID
+ parms←##.WinSys.CreateParms_ShellExecute
+ parms.file←↑#.GetCommandLineArgs
+ parms.lpParms←##.FilesAndDirs.PWD,'\Tests\TestCase_ShellExec_020'
+ parms.lpParms,←' pid=',⍕pid
+⍝parms.lpParms,←' -lx'                                  ⍝ For testing/changing that WS only
+⍝parms.lpParms,←' Captions\Session="',(⍕pid),' {WSID}"' ⍝ For testing/changing that WS only
+ filename←##.FilesAndDirs.PWD,'\Tests\TestCase_ShellExec_020-',⍕pid
+ →T.GoToTidyUp 0≠##.WinSys.ShellExecute parms
+ Wait filename
+ →T.GoToTidyUp 0≠⍎##.APLTreeUtils.ReadUtf8File filename
+ ⎕DL 0.2
+ ⎕NDELETE filename
+ ⎕DL 0.2
+
+⍝ Same as before but via the left argument of `ShellExecute` we grant admin rights:
+ →T.GoToTidyUp 0≠1 ##.WinSys.ShellExecute parms
+ Wait filename
+ →T.GoToTidyUp 1≠⍎##.APLTreeUtils.ReadUtf8File filename
+ ⎕DL 0.2
+ ⎕NDELETE filename
+ ⎕DL 0.2
+
+⍝ Almost the same as before but we grant admin rights via the verb: "RunAs" implies admin rights.
+ parms.verb←'RUNAS'
+ →T.GoToTidyUp 0≠##.WinSys.ShellExecute parms
+ ⎕DL 2
+⍝ Wait filename
+ →T.GoToTidyUp 1≠⍎##.APLTreeUtils.ReadUtf8File filename
+ ⎕DL 0.1
+
+ R←T._OK
+
+∆TidyUp:
+ :If 0<⎕NC'filename'
+     1 ⎕NDELETE filename
+ :EndIf
