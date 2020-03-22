@@ -15,13 +15,13 @@
 
     ∇ r←Version
       :Access Public shared
-      r←({⍵↑⍨-'.'⍳⍨⌽⍵}⍕⎕THIS)'2.8.0.6' '2019-06-04'
+      r←({⍵↑⍨-'.'⍳⍨⌽⍵}⍕⎕THIS)'3.0.0.7' '2020-03-22'
     ∇
 
     ∇ History
       :Access Public shared
-      ⍝ * 2.8.0:
-      ⍝   * New method `GetDefaultBrowser` added.
+      ⍝ * 3.0.0
+      ⍝   * BREAKING CHANGE: file extension is now .aplc rather than .dyalog
       ⍝\\
       ⍝ For information regarding older versions see <https://github.com/aplteam/WinSys/releases>
      
