@@ -15,13 +15,15 @@
 
     ∇ r←Version
       :Access Public shared
-      r←({⍵↑⍨-'.'⍳⍨⌽⍵}⍕⎕THIS)'3.1.0.8' '2020-05-11'
+      r←({⍵↑⍨-'.'⍳⍨⌽⍵}⍕⎕THIS)'4.0.0.11' '2020-05-11'
     ∇
 
     ∇ History
       :Access Public shared
-      ⍝ * 3.0.0
+      ⍝ * 4.0.0
+      ⍝   * BREAKING CHANGE: deprecated methods removed
       ⍝   * New method `GetFileVersionInfo` added.
+      ⍝   * Outdated ".C32" removed from all `⎕NA` calls.
       ⍝ * 3.0.0
       ⍝   * BREAKING CHANGE: file extension is now .aplc rather than .dyalog
       ⍝\\
@@ -110,71 +112,6 @@
     :Field Public Shared ReadOnly SM_CMONITORS←80
     :Field Public Shared ReadOnly SM_SAMEDISPLAYFORMAT←81
 
-    ∇ {r}←{adminFlag}ShellExecute x;ShellOpen;parms
-      :Access Public Shared
-      ⍝Deprecated⍝ See the `OS` class.
-      ⍝ Simple way to fire up an application or a document.\\
-      ⍝ `⍵` can be one of:
-      ⍝ * A namespace, typically created by calling [`CreateParms_ShellExecute`](#). This is called a
-      ⍝   parameter space.
-      ⍝ * A text string typically specifying a document or an EXE, possibly with command line parameters.
-      ⍝ In case a text string is passed and the name of the file (first parameter) contains a space then
-      ⍝ this filename **must** be enclosed within double quotes.\\
-      ⍝ A parameter space is usually created by calling `CreateParms_ShellExecute`. You can then make
-      ⍝ amendments to it and pass it as right argument. See there for details.\\
-      ⍝ If the defaults are fine for you and you want just start an EXE or, say, display an
-      ⍝ HTML file then you can just specify a path, either to the EXE or to the document.\\
-      ⍝ You can even specify command line parameters this way but you must enclose `file` with
-      ⍝ double quotes (") if it contains blanks. (The `ShellExecute` Windows function does not like
-      ⍝ double quotes but we remove them before we call it).\\
-      ⍝ The optional left argument defaults to 0 which makes the verb default to "OPEN". By specifying
-      ⍝ a 1 here it's going to be "RUNAS" meaning that the application is executed in elevated mode (=with admin rights).
-      :If (⎕DR x)∊80 82
-          parms←CreateParms_ShellExecute
-          :If '"'=1⍴x
-              parms.(file lpParms)←x{(⍵↑⍺)(⍵↓⍺)}1++/∧\2>+\'"'=x
-          :Else
-              parms.(file lpParms)←x{(⍵↑⍺)(⍵↓⍺)}⌊/x⍳' "'
-          :EndIf
-      :ElseIf 326=⎕DR x
-      :AndIf 9=⎕NC'x'
-          parms←x
-          parms.verb←Uppercase parms.verb
-      :Else
-          'Invalid right argument'⎕SIGNAL 11
-      :EndIf
-      'Invalid verb'⎕SIGNAL 11/⍨~(⊂parms.verb)∊'EXPLORE' 'FIND' 'OPEN' 'PRINT' 'RUNAS' ''
-      'ShellOpen'⎕NA'U Shell32.C32|ShellExecute* I <0T <0T <0T <0T I'
-      adminFlag←{0<⎕NC ⍵:⍎⍵ ⋄ 0}'adminFlag'
-      :If adminFlag
-          parms.verb←'RUNAS'
-      :EndIf
-      parms.file~←'"'
-      r←ShellOpen parms.(handle verb file lpParms lpDirectory show)
-      r←42≠r
-    ∇
-
-    ∇ parms←CreateParms_ShellExecute
-      :Access Public Shared
-      ⍝Deprecated⍝ See the `OS` class.
-      ⍝ | **Parameter**| **Notes** |
-      ⍝ | `verb`       | Must be one of: EDIT, EXPLORE, FIND, OPEN, PRINT, RUNAS, NULL (default). Note the "RUNAS" is "Open" but with admin rights. |
-      ⍝ | `file`       | Name of the file `operation` is performed on. Usually this is an EXE but it can be a document as well. |
-      ⍝ | `handle`     | Handle pointing to a window or 0 (default. |
-      ⍝ | `show`       | 1 (default) allows the application involved to show its windows. 0 hides any windows. |
-      ⍝ | `lpParms`    | Any parameters, for example command line parameters in case the verb is "OPEN". |
-      ⍝ | `lpDirectory`| The working direcotry for the application involved. |
-      ⍝
-      ⍝ For more information see <https://msdn.microsoft.com/en-us/library/windows/desktop/bb762153(v=vs.85).aspx>
-      parms←⎕NS''
-      parms.verb←''
-      parms.file←''
-      parms.handle←0
-      parms.show←1          ⍝ Allow the app to show its windows. Suppress with  0.
-      parms.lpParms←''
-      parms.lpDirectory←''
-    ∇
-
     ∇ R←CONSTANT Y;name;value;tf;cf
       :Access Public Shared
     ⍝ Returns a string. Executing this string creates a niladic function with
@@ -254,7 +191,7 @@
     ⍝ 'C:\Windows\MyDir' ←→ #.WinSys.ExpandEnv '%WinDir%\MyDir'
     ⍝ ~~~
       :If '%'∊R←Y
-          'ExpandEnvironmentStrings'⎕NA'I4 KERNEL32.C32|ExpandEnvironmentStrings* <0T >0T I4'
+          'ExpandEnvironmentStrings'⎕NA'I4 KERNEL32|ExpandEnvironmentStrings* <0T >0T I4'
           multiByte←1+80=⎕DR' '       ⍝ Unicode version? (used to double the buffer size)
           R←1⊃ExpandEnvironmentStrings(Y(multiByte×1024)(multiByte×1024))
       :EndIf
@@ -281,7 +218,7 @@
     ⍝ Returns the NETBIOS name of the current system.\\
     ⍝ In case of an error R is empty.
       :Access Public Shared
-      '∆GetComputerName'⎕NA'P KERNEL32.C32|GetComputerName* >0T =P'
+      '∆GetComputerName'⎕NA'P KERNEL32|GetComputerName* >0T =P'
       multiByte←1+80=⎕DR' '           ⍝ Unicode version? (used to double the buffer size)
       (rc buffer size)←∆GetComputerName multiByte×2⍴32
       R←(0=↑rc)⊃buffer''
@@ -304,14 +241,14 @@
     ⍝ ~~~
     ⍝ #.WinSys.(GetSystemMetrics SM_CYMENU)
     ⍝ ~~~
-      '∆GetSystemMetrics'⎕NA'I4 USER32.C32|GetSystemMetrics I4'
+      '∆GetSystemMetrics'⎕NA'I4 USER32|GetSystemMetrics I4'
       R←∆GetSystemMetrics Value
     ∇
 
     ∇ R←GetWindowsDirectory;∆GetWindowsDirectory;buffer;size;length;multiByte
       :Access Public Shared
     ⍝ Returns the directory name of the currently running Windows.
-      '∆GetWindowsDirectory'⎕NA'I4 KERNEL32.C32|GetWindowsDirectory* >0T =I4'
+      '∆GetWindowsDirectory'⎕NA'I4 KERNEL32|GetWindowsDirectory* >0T =I4'
       multiByte←1+80=⎕DR' '           ⍝ Unicode version? (used to double the buffer size)
       :Trap 0
           (length buffer)←2↑∆GetWindowsDirectory 2⍴multiByte×256
@@ -351,7 +288,7 @@
       SE_ERR_NOASSOC←31     ⍝ There is no association for the specified file type with an executable file.
       ⍝ ------------------------
       directory←{0<⎕NC ⍵:⍎⍵ ⋄ ''}'directory'
-      '∆FindExecutable'⎕NA'I4 shell32.C32|FindExecutable* <0T <0T >0T'
+      '∆FindExecutable'⎕NA'I4 shell32|FindExecutable* <0T <0T >0T'
       multiByte←1+80=⎕DR' '           ⍝ Unicode version? (used to double the buffer size)
       (hinstance exe)←∆FindExecutable filename directory(multiByte×1024)
       :If 32<hinstance
@@ -362,24 +299,11 @@
       :EndIf
     ∇
 
-    ∇ R←GetProcessID;GetCurrentProcessId
-     ⍝Deprecated⍝ See the `OS` class.
-      :Access Public Shared
-     ⍝ Returns the process ID of the current process.\\
-     ⍝ In case of an error R is zero.
-      :Trap 0
-          ⎕NA'I KERNEL32|GetCurrentProcessId'
-          R←GetCurrentProcessId
-      :Else
-          R←0
-      :EndTrap
-    ∇
-
     ∇ R←GetAllDrives;Values;Drives;∆GetLogicalDriveStrings;⎕IO;⎕ML
     ⍝ Returns a vector of text vectors with the names of all drives, for example:  "C:\"
       :Access Public Shared
       ⎕IO←1 ⋄ ⎕ML←3
-      '∆GetLogicalDriveStrings'⎕NA'U4 KERNEL32.C32|GetLogicalDriveStrings* U4 >T[]'
+      '∆GetLogicalDriveStrings'⎕NA'U4 KERNEL32|GetLogicalDriveStrings* U4 >T[]'
       Values←∆GetLogicalDriveStrings 255 255
       Drives←⊂(↑Values)↑(⎕IO+1)⊃Values
       R←((~(⎕UCS 0)=∊Drives)⊂∊Drives)
@@ -391,7 +315,7 @@
      ⍝ "Types" may be something like "Fixed", "CD-ROM", "Removable", "Remote".
       :Access Public Shared
       ⎕IO←1 ⋄ ⎕ML←3
-      '∆GetDriveType'⎕NA'U4 KERNEL32.C32|GetDriveType* <0T'
+      '∆GetDriveType'⎕NA'U4 KERNEL32|GetDriveType* <0T'
       Types←∆GetDriveType∘⊂¨AllDrives←GetAllDrives
       Txt←'Invalid Path' 'Removable' 'Fixed' 'Remote' 'CD-ROM' 'Ram-Disk'
       R←AllDrives,Types,[1.5](Txt,⊂'Unknown')[(0,⍨⍳⍴Txt)⍳Types]
@@ -469,7 +393,7 @@
     ⍝ For details see <https://msdn.microsoft.com/en-us/library/windows/desktop/ms633499(v=vs.85).aspx>
       :Access Public Shared
       className←{0<⎕NC ⍵:⍎⍵ ⋄ 0}'className'
-      'FindWindow'⎕NA'P User32.C32|FindWindow* P <0T'
+      'FindWindow'⎕NA'P User32|FindWindow* P <0T'
       h←FindWindow className caption
     ∇
 
@@ -537,29 +461,8 @@
     ∇ R←GetLastError;∆GetLastError;⎕ML;⎕IO
       :Access Public Shared
       ⎕IO←1 ⋄ ⎕ML←3
-      '∆GetLastError'⎕NA'I4 kernel32.C32|GetLastError'
+      '∆GetLastError'⎕NA'I4 kernel32|GetLastError'
       R←∆GetLastError
-    ∇
-
-    ∇ {r}←KillProcess ID;h;PROCESS_TERMINATE;False;OpenProcess;TerminateProcess;CloseHandle
-    ⍝Deprecated⍝ See the `OS` class.
-    ⍝ Kill one or more processes with ID(s).\\
-    ⍝ R is 1 if the process got killed, otherwise 0.
-    ⍝Deprecated⍝ See the `OS` class.
-      :Access Public Shared
-      r←0
-      ⎕NA'P KERNEL32.C32|OpenProcess I4 I2 I4'
-      PROCESS_TERMINATE←↑83 323 ⎕DR 1
-      False←↑83 323 ⎕DR 0
-      ⎕NA'U KERNEL32.C32|CloseHandle I4'
-      :Repeat
-          :If 0≠h←OpenProcess PROCESS_TERMINATE False(↑ID)   ⍝ Get handle to the process
-              ⎕NA'KERNEL32.C32|TerminateProcess P I4'
-              {}TerminateProcess h 0                         ⍝ Kill it
-              r←1
-          :End
-          {}CloseHandle h
-      :Until 0∊⍴ID←1↓ID
     ∇
 
     ∇ r←Is64Bit
