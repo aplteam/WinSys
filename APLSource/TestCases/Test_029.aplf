@@ -1,0 +1,15 @@
+ R←Test_029(stopFlag batchFlag);⎕TRAP;info
+ ⍝ Exercise `##.WinSys.GetFileVersionInfo
+ R←T._Failed
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ info←##.WinSys.GetFileVersionInfo''
+ →T.PassesIf 0=≢info
+
+ info←##.WinSys.GetFileVersionInfo'Doe-alomost-certainly-not-exist'
+ →T.PassesIf 0=≢info
+
+ info←##.WinSys.GetFileVersionInfo(∨/'-64'⍷0⊃#.APLVersion)⊃'Tests\conga33_64.dll' 'Tests\conga33_64.dll'
+ →T.PassesIf 3 3 1522≡info
+
+ R←T._OK
