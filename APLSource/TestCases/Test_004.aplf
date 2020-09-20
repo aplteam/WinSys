@@ -4,9 +4,9 @@
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  v←##.WinSys.GetWindowsDirectory
- set←⊃⎕CMD'set'                                          ⍝ All env variables
- r←'windir'{(##.APLTreeUtils.Lowercase(⍴⍺)↑[1]⍵)∧.=⍺}set  ⍝ Row
- windir←{⍵↓⍨-+/∧\' '=⌽⍵}'windir='{(⍴⍺)↓⍵}set[r⍳1;]
+ set←↑⎕CMD'set'                                          ⍝ All env variables
+ r←'windir'{(##.APLTreeUtils2.Lowercase(≢⍺)↑[1]⍵)∧.=⍺}set  ⍝ Row
+ windir←{⍵↓⍨-+/∧\' '=⌽⍵}'windir='{(≢⍺)↓⍵}set[r⍳1;]
  →T.FailsIf windir≢v
 
  R←T._OK

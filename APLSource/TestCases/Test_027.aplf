@@ -9,21 +9,21 @@
  list←##.WinSys.GetDriveAndType
 
  →T.FailsIf~0<⍴list[;0]
- →T.FailsIf~∧/(↑¨list[;0])∊⎕A
+ →T.FailsIf~∧/(⊃¨list[;0])∊⎕A
  →T.FailsIf(,':')≢,∪1⊃¨list[;0]
  →T.FailsIf(,'\')≢,∪2⊃¨list[;0]
- →T.FailsIf(,3)≢∪↑∘⍴¨list[;0]
+ →T.FailsIf(,3)≢∪≢¨list[;0]
  →T.FailsIf~∧/(∪list[;1])∊⍳9
 
  ⍝ The following tests depend on local specialties - see "Initial"
  :If 0≠≢#.INI.FixedDrives
-     →T.PassesIf(,#.INI.FixedDrives)Match↑¨(list[;2]≡¨⊂'Fixed')/list[;0]
+     →T.PassesIf(,#.INI.FixedDrives)Match⊃¨(list[;2]≡¨⊂'Fixed')/list[;0]
  :EndIf
  :If 0≠≢#.INI.NetworkDrives
-     →T.PassesIf(,#.INI.NetworkDrives)Match↑¨(list[;2]≡¨⊂'Remote')/list[;0]
+     →T.PassesIf(,#.INI.NetworkDrives)Match⊃¨(list[;2]≡¨⊂'Remote')/list[;0]
  :EndIf
  :If 0≠≢#.INI.CDRomDrives
-     →T.PassesIf(,#.INI.CDRomDrives)Match↑¨(list[;2]≡¨⊂'CD-ROM')/list[;0]
+     →T.PassesIf(,#.INI.CDRomDrives)Match⊃¨(list[;2]≡¨⊂'CD-ROM')/list[;0]
  :EndIf
 
  types←'Invalid Path' 'Removable' 'Fixed' 'Remote' 'CD-ROM' 'Ram-Disk'

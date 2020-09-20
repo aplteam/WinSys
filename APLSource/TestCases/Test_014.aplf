@@ -3,7 +3,7 @@
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 
- dllName←↑↑##.FilesAndDirs.Dir(⎕IO⊃##.APLTreeUtils.SplitPath ⎕IO ⎕IO⊃#.GetCommandLineArgs'Dyalog'),'\dyalog*.dll'
+ dllName←⊃⊃##.FilesAndDirs.Dir(⎕IO⊃##.APLTreeUtils2.SplitPath ⎕IO ⎕IO⊃#.GetCommandLineArgs'Dyalog'),'\dyalog*.dll'
  r←##.WinSys.GetModuleFileName dllName
  →T.PassesIf 0<⍴r
 

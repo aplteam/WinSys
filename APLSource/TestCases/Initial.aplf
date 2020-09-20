@@ -1,5 +1,5 @@
  Initial;home
- ⎕IO←0 ⋄ ⎕ML←3
+ ⎕IO←0 ⋄ ⎕ML←1
  ##.FilesAndDirs.PolishCurrentDir
  #.INI←'flat'(⎕NEW ##.IniFiles(,⊂GetFileRoot,'Tests\INIs\TestCases_',##.WinSys.GetComputerName,'.ini')).Convert ⎕NS''
  home←GetTestCasesHome

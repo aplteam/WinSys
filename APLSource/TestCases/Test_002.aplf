@@ -7,6 +7,6 @@
  →T.FailsIf~0∊⍴v
  v←##.WinSys.ExpandEnv i←'%WinDir%\MyDir'
  →T.FailsIf v≡i
- →T.FailsIf'MyDir'≢1⊃##.APLTreeUtils.SplitPath v
+ →T.FailsIf'MyDir'≢1⊃##.APLTreeUtils2.SplitPath v
 
  R←T._OK

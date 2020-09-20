@@ -7,6 +7,7 @@
 
 ⍝ First we check whether "Version" returns a valid result:
  (n v d)←rf.Version
+ d←{⍵/⍨3>+\'-'=⍵}d      ⍝ Remove trailing stuff like "-beta"
  v←{⍵/⍨3>+\'.'=⍵}v      ⍝ Remove build ID
  f1←~5≤⍴v
  f1∨←2≠'.'+.=v
@@ -17,7 +18,7 @@
  f1∨←~∧/⎕D∊⍨d~'-'
 
 ⍝ publish.config must be in line with what "Version" returns of course:
- xml←⎕XML'flat'##.APLTreeUtils.ReadUtf8File'publish.config'
+ xml←⎕XML⊃⎕NGET'publish.config'
  f2←v≢(2+⎕IO)⊃xml[xml[;1+⎕IO]⍳⊂'version';]
  f2∨←d≢(2+⎕IO)⊃xml[xml[;1+⎕IO]⍳⊂'date';]
 
