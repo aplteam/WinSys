@@ -1,0 +1,14 @@
+ R←Test_Misc_008(stopFlag batchFlag);h;ff;⎕TRAP
+⍝ Exercise `##.WinSys.GetHandleFromCaption`
+ R←T._Failed
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ 'ff'⎕WC'Form'('Visible' 0)('Caption'(⎕A,⎕D,⎕A,⎕A))
+ h←##.WinSys.GetHandleFromCaption(⎕A,⎕D,⎕A,⎕A)
+ →T.FailsIf 0=h                       ⍝ That's the form we just created, so the handle must be valid
+ ⎕EX'ff'
+ ⎕DL 0.1
+ h←##.WinSys.GetHandleFromCaption(⎕A,⎕D,⎕A,⎕A)
+ →T.FailsIf 0≠h                       ⍝ The form has ceased to exist, so...
+
+ R←T._OK

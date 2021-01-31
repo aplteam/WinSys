@@ -1,2 +1,2 @@
  r←GetTestCasesHome
- r←##.FilesAndDirs.GetTempPath,'WinSys_Testcases\'
+ r←FilesAndDirs.GetTempPath,'WinSys_Testcases\'

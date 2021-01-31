@@ -1,0 +1,12 @@
+ R←Test_Misc_002(stopFlag batchFlag);v;i;⎕TRAP
+⍝ Test the `WinSys.ExpandEnv` method
+ R←T._Failed
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ v←##.WinSys.ExpandEnv''
+ →T.FailsIf 0≠≢v
+ v←##.WinSys.ExpandEnv i←'%WinDir%\MyDir'
+ →T.FailsIf v≡i
+ →T.FailsIf'MyDir'≢1⊃APLTreeUtils2.SplitPath v
+
+ R←T._OK

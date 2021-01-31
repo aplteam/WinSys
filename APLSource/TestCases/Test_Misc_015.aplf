@@ -1,0 +1,8 @@
+ R←Test_Misc_015(stopFlag batchFlag);⎕TRAP;r;dllName
+⍝ Exercise `##.WinSys.IsRunningAsAdmin`
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←T._Failed
+
+ →T.PassesIf(##.WinSys.IsRunningAsAdmin)∊0 1
+
+ R←T._OK

@@ -1,9 +1,0 @@
- R←Test_007(stopFlag batchFlag);i;ms;⎕TRAP
-⍝ Exercise `##.WinSys.GetMsgFrom`
- R←T._Failed
- ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
-
- ms←##.WinSys.GetMsgFrom¨⍳1000   ⍝ Get messages for 1000 return codes
- →T.FailsIf 400>0+.≠≢¨ms         ⍝ There are at least 400 error messages defined...
-
- R←T._OK

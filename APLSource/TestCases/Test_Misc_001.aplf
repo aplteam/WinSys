@@ -1,0 +1,22 @@
+ R←Test_Misc_001(stopFlag batchFlag);rf;⎕TRAP
+⍝ Test the `##.WinSys.CONSTANT` method
+ R←T._Failed
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ rf←⎕NS''
+ :With rf
+     ⍎##.##.WinSys.CONSTANT'PI←3.14'
+     ⍎##.##.WinSys.CONSTANT'HELLO←''Universe'''
+     →##.T.FailsIf'HELLO' 'PI'≢⎕NL-3
+     →##.T.FailsIf'Universe'≢HELLO
+     →##.T.FailsIf 3.14≢PI
+     ⍎##.##.WinSys.CONSTANT'HELLO←''Universe←12'''
+     ⍎##.##.WinSys.CONSTANT''
+     :Trap 11
+         ⍎##.##.WinSys.CONSTANT'%PI←¯1'
+     :Else
+         →##.T.FailsIf'Name is invalid: %PI'≢0⊃⎕DM
+     :EndTrap
+ :EndWith
+
+ R←T._OK

@@ -1,9 +1,0 @@
- R←Test_009(stopFlag batchFlag);dpi;⎕TRAP
-⍝ Exercise `##.WinSys.GetDPI`
- R←T._Failed
- ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
-
- dpi←##.WinSys.GetDPI
- →T.PassesIf(dpi>0)∧(501>dpi)
-
- R←T._OK

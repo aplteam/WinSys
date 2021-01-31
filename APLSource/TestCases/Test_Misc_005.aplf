@@ -1,0 +1,8 @@
+ R←Test_Misc_005(stopFlag batchFlag);v;i;⎕TRAP
+⍝ Exercise `##.WinSys.GetSystemMetrics`
+ R←T._Failed
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ v←##.WinSys.(GetSystemMetrics¨⍎¨List_SM)
+
+ R←T._OK

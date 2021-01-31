@@ -1,0 +1,12 @@
+ R←Test_Misc_030(stopFlag batchFlag);⎕TRAP;info
+ ⍝ Exercise `##.WinSys.GetDiskFreeSpace`
+ R←T._Failed
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ info←##.WinSys.GetDiskFreeSpace'C'
+ →T.PassesIf 0∧.<info
+
+ info←##.WinSys.GetDiskFreeSpace'C:'
+ →T.PassesIf 0∧.<info
+
+ R←T._OK
