@@ -4,11 +4,11 @@
  R←T._Failed
 
  :If 0=batchFlag
-     filename←'Tests\empty.dws'
+     filename←##.CiderConfig.HOME,'Tests\empty.dws'
      :If 0=⎕NEXISTS filename
          . ⍝ Huuh?! Something is wrong here!
      :EndIf
-     (rc path)←##.WinSys.FindExecutable FilesAndDirs.PWD,'\',filename
+     (rc path)←##.WinSys.FindExecutable filename
      →T.FailsIf 0≠rc
      →T.FailsIf'dyalog.exe'≢⎕C 1⊃APLTreeUtils2.SplitPath path
  :EndIf
