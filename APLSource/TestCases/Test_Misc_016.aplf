@@ -4,7 +4,7 @@
  R←T._Failed
 
  :If 0=batchFlag
-     filename←##.CiderConfig.HOME,'Tests\empty.dws'
+     filename←##.CiderConfig.HOME,'/Tests/empty.dws'
      :If 0=⎕NEXISTS filename
          . ⍝ Huuh?! Something is wrong here!
      :EndIf

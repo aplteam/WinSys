@@ -9,7 +9,7 @@
  info←##.WinSys.GetFileVersionInfo'Doe-alomost-certainly-not-exist'
  →T.PassesIf 0=≢info
 
- info←##.WinSys.GetFileVersionInfo(∨/'-64'⍷0⊃#.APLVersion)⊃##.CiderConfig.HOME∘,¨'Tests\conga33_64.dll' 'Tests\conga33_64.dll'
+ info←##.WinSys.GetFileVersionInfo(∨/'-64'⍷0⊃#.APLVersion)⊃##.CiderConfig.HOME∘,¨'/Tests.conga33_64.dll' '/Tests/conga33_64.dll'
  →T.PassesIf 3 3 1522≡info
 
  R←T._OK
