@@ -19,5 +19,5 @@
   source: "APLSource/WinSys",
   tags: "os-tools",
   userCommandScript: "",
-  version: "6.0.0+21",
+  version: "6.0.0+23",
 }
