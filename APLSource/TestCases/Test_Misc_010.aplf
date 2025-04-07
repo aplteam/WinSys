@@ -1,9 +1,11 @@
- R←Test_Misc_010(stopFlag batchFlag);buf;⎕TRAP
+ R←Test_Misc_010(stopFlag batchFlag);⎕TRAP;version
 ⍝ Exercise `##.WinSys.GetDPI`
  R←T._Failed
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- buf←##.WinSys.Version
- →T.FailsIf 3≠⍴buf
+ version←##.WinSys.Version
+ →T.PassesIf 1=≡version
+ →T.PassesIf' '=1↑0⍴version
+ →T.PassesIf∧/⎕D∊⍨{⍵↑⍨¯1+⌊/⍵⍳'+-'}version~' .'
 
  R←T._OK

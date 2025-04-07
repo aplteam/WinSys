@@ -1,0 +1,9 @@
+ R←Test_Misc_032(stopFlag batchFlag);⎕TRAP;list
+ ⍝ Exercise `Public`
+ R←T._Failed
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ list←##.WinSys.Public
+ →T.PassesIf 0<≢list
+
+ R←T._OK

@@ -1,0 +1,8 @@
+ R←Test_Misc_031(stopFlag batchFlag);⎕TRAP
+ ⍝ Exercise `Init`
+ R←T._Failed
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ ##.WinSys.Init
+
+ R←T._OK

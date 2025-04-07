@@ -1,5 +1,5 @@
 {
-  api: "WinSys",
+  api: "API",
   assets: "",
   description: "Windows-only OS calls and system infos",
   documentation: "",
@@ -7,7 +7,7 @@
   group: "aplteam",
   io: 1,
   license: "MIT",
-  lx: "",
+  lx: "Init",
   maintainer: "kai@aplteam.com",
   minimumAplVersion: "18.0",
   ml: 1,
@@ -16,8 +16,8 @@
   os_mac: 1,
   os_win: 1,
   project_url: "https://github.com/aplteam/WinSys",
-  source: "APLSource/WinSys.aplc",
+  source: "APLSource/WinSys",
   tags: "os-tools",
   userCommandScript: "",
-  version: "5.0.1+19",
+  version: "6.0.0+21",
 }

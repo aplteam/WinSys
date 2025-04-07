@@ -1,7 +1,9 @@
- Initial;home
+ Initial;home;iniFilename
  ⎕IO←0 ⋄ ⎕ML←1
  FilesAndDirs.PolishCurrentDir
- #.INI←'flat'(⎕NEW IniFiles(,⊂GetFileRoot,'/Tests/INIs/TestCases_',##.WinSys.GetComputerName,'.ini')).Convert ⎕NS''
+ iniFilename←GetFileRoot,'/Tests/INIs/TestCases_',##.WinSys.GetComputerName,'.ini'
+ ('Missing INI file: ',iniFilename)Assert ⎕NEXISTS iniFilename
+ #.INI←'flat'(⎕NEW IniFiles(,⊂iniFilename)).Convert ⎕NS''
  home←GetTestCasesHome
  {}FilesAndDirs.RmDir home                    ⍝ Just in case
  {}'Create!'FilesAndDirs.CheckPath home       ⍝ Create the directory; is populated by some test cases
