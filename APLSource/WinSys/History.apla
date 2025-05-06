@@ -1,4 +1,7 @@
 (
+ ' * 6.0.1'
+ '   * The Cider config file wrongly declared the development dependencies to be package dependencies'
+ '   * Package "FilesAndDirs" updated '
  ' * 6.0.0'
  '   * Potentially breaking change: `Version1 returns a char vector with the version number from the package config file'
  '   * Class converted into a namespace'
