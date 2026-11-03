@@ -41,7 +41,9 @@
      ⎕←'Using "MakeHelpers" version ',⎕SE.MakeHelpers.Version
      C←##.CiderConfig
      path←C.HOME,'/',C.CIDER.distributionFolder
-     cfg←M.EditPackageConfigFile ##.WinSys.TatinVars
+     :If ⎕NULL≡cfg←M.EditPackageConfigFile ##.TatinVars
+         ⎕←'Cancelled by user' ⋄ →0
+     :EndIf
      M.RecreateFolder path
      {}⎕SE.Tatin.CreateAPIfromCFG ##.WinSys cfg
      parms←⎕SE.Tatin.CreateBuildParms C.HOME
