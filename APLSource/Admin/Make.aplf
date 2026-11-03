@@ -40,11 +40,8 @@
      :EndSection
      ⎕←'Using "MakeHelpers" version ',⎕SE.MakeHelpers.Version
      C←##.CiderConfig
-     ⎕←'' ⋄ 0 0⍴⍞,0/⍞←'Pause sync services like Dropbox, Google Drive etc. in order to avoid FILE ACCESS errors. Press <enter> to continue '
-     :If ⎕NULL≡cfg←M.EditPackageConfigFile ##.WinSys.TatinVars
-         ⎕←'Cancelled by user' ⋄ →0
-     :EndIf
      path←C.HOME,'/',C.CIDER.distributionFolder
+     cfg←M.EditPackageConfigFile ##.WinSys.TatinVars
      M.RecreateFolder path
      {}⎕SE.Tatin.CreateAPIfromCFG ##.WinSys cfg
      parms←⎕SE.Tatin.CreateBuildParms C.HOME
