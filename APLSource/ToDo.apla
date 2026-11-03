@@ -1,0 +1,6 @@
+(
+ 'Packages updated on 2026-11-03'
+ 'Reason was that some packages had a major upgrade: CommTools, CodeCorverage, Tester2'
+ ''
+ 'No new version created because those packages are required for development/test only.'
+)
